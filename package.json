@@ -1,0 +1,20 @@
+{
+  "name": "psycho-proxy",
+  "version": "0.1.0",
+  "description": "Crazy way to proxy data",
+  "author": "Trevor Norris <trev.norris@gmail.com> (http://trevnorris.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/trevnorris/psycho-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trevnorris/psycho-proxy/issues",
+    "email": "trev.norris@gmail.com"
+  },
+  "engines": {
+    "node": ">=0.11.5"
+  },
+  "main": "main.js",
+  "engineStrict": true,
+  "license": "MIT"
+}
