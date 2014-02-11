@@ -48,7 +48,7 @@ module.exports = Proxy;
 // instance will listen for connections.
 function Proxy(pOp) {
   if (!(this instanceof Proxy))
-    return new Proxy();
+    return new Proxy(pOp);
 
   // Routes that incoming connections must take when they contain a specific
   // Host HTTP header field.
