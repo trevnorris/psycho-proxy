@@ -377,7 +377,7 @@ function proxyDataToClient(nread, data) {
   if (this._return_route.fd <= 0) {
     err = new Error('Attempt to write to bad file descriptor');
     err.code = 'EBADF';
-    alert(client, err);
+    alert(this, err);
     return;
   }
   var req = { oncomplete: dataWritten };
@@ -389,7 +389,7 @@ function proxyDataToClient(nread, data) {
 
 function dataWritten(err, handle, req) {
   if (err)
-    fail(this, err, 'write');
+    fail(handle, err, 'write');
   // TODO(trevnorris): Took this straight from core, but do some research
   // why this is necessary.
   if (req && req.cb)
@@ -503,6 +503,14 @@ function fail(self, err, syscall) {
 
   err = util._errnoException(err, syscall);
   err.handle = self;
+
+  // Here are several errors that should only alert, and not need to be thrown.
+  if (err.code === 'ECONNRESET' ||
+      err.code === 'ECANCELED' ||
+      err.code === 'EPIPE') {
+    alert(self, err);
+    return;
+  }
 
   // These are all the paths where onerror() callback handlers may be found.
   if (self._onerror)
