@@ -1,6 +1,6 @@
 {
   "name": "psycho-proxy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Crazy way to proxy data",
   "author": "Trevor Norris <trev.norris@gmail.com> (http://trevnorris.com)",
   "repository": {
