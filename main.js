@@ -325,7 +325,7 @@ function searchHostHeader(nread, buffer) {
   // they can be cleaned up when close() and remove() are implemented.
 
   // Overwrite the .onread method to proxy data directly.
-  this.onread = proxyDataToClient;
+  this.onread = proxyDataBetween;
 }
 
 
@@ -352,7 +352,7 @@ function TCPConnect(self, data, host, port) {
 function afterConnect(err, client, req, readable, writable) {
   if (err)
     fail(client, err, 'connect');
-  client.onread = proxyDataToClient;
+  client.onread = proxyDataBetween;
   err = client.readStart();
   if (err)
     fail(client, err, 'read');
@@ -368,7 +368,7 @@ function afterConnect(err, client, req, readable, writable) {
 }
 
 
-function proxyDataToClient(nread, data) {
+function proxyDataBetween(nread, data) {
   if (nread <= 0) {
     if (nread < 0)
       this.close(onClose);
