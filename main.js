@@ -369,6 +369,8 @@ function afterConnect(err, client, req, readable, writable) {
 
 
 function proxyDataBetween(nread, data) {
+  var err, req;
+
   if (nread <= 0) {
     if (nread < 0)
       this.close(onClose);
@@ -380,8 +382,8 @@ function proxyDataBetween(nread, data) {
     alert(this, err);
     return;
   }
-  var req = { oncomplete: dataWritten };
-  var err = this._return_route.writeBuffer(req, data);
+  req = { oncomplete: dataWritten };
+  err = this._return_route.writeBuffer(req, data);
   if (err)
     fail(this, err, 'write');
 }
